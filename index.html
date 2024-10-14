@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern News Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li onclick="fetchNews('Technology')">Technology</li>
+                <li onclick="fetchNews('Science')">Science</li>
+                <li onclick="fetchNews('Health')">Health</li>
+                <li onclick="fetchNews('Sports')">Sports</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <input type="text" id="search-input" placeholder="Search news..." oninput="filterNews()" />
+        <div class="news-container" id="cardscontainer">
+        </div>
+
+        <template id="template-news-card">
+            <div class="news-article">
+                <div class="news-img">
+                    <img id="news-img" src="" alt="news image">
+                </div>
+                <div class="news-content">
+                    <h3 id="news-title">Title</h3>
+                    <h6 id="news-source">Source · Date</h6>
+                    <p id="news-desc">Description</p>
+                </div>
+            </div>
+        </template>
+
+        <div class="robo">
+            <img src="robo.png" alt="">
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

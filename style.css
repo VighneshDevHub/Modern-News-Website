@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+
+:root{
+    --body-bg-color: #3d3a37;
+    --box-border-color: #a99b9b;
+    --box-shadow-color: 0px 0px 20px rgba(43, 48, 218, 0.553);
+    --box-bg-color:rgb(49, 47, 59);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--body-bg-color);
+    font-family: 'Lato', sans-serif;
+}
+
+
+header {
+    width: 100%;
+    background: #1d2121;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+nav ul {
+    color: white;
+    display: flex;
+}
+
+ul li {
+    list-style: none;
+    padding: 30px;
+    cursor: pointer;
+}
+
+li:hover {
+    border-bottom: 3px solid #197ced; 
+    font-weight: bolder;
+    color: #1d6dc7;
+    box-shadow: var(--box-shadow-color);
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    border: 2px solid var(--box-border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px; 
+    padding: 20px;
+    max-width: 1200px; 
+    margin: 0 ; 
+}
+
+.news-article {
+    background-color: var(--box-bg-color);
+    border-radius: 20px;
+    border: 2px solid var(--box-border-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 393px;
+    height: 411px;
+}
+
+.news-article:hover {
+    box-shadow: var(--box-shadow-color);
+    transform: scale(1.05);
+}
+
+.news-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-content {
+    padding: 15px;
+}
+
+.news-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.news-content p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.news-content h6 {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.robo img {
+    width: 100px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 50px;    
+    right: 50px;
+}
+
+.robo img:hover {
+    box-shadow: 0px 0px 20px 2px rgba(1, 188, 240, 0.553);
+    cursor: pointer;
+}
