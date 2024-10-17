@@ -5,25 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern News Website</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+
 </head>
 
 <body>
     <header>
         <nav>
+            <div class="logo">
+                <img src="images/img4.jpg" alt="">
+            </div>
             <ul>
-                <li onclick="fetchNews('Technology')">Technology</li>
-                <li onclick="fetchNews('Science')">Science</li>
-                <li onclick="fetchNews('Health')">Health</li>
-                <li onclick="fetchNews('Sports')">Sports</li>
             </ul>
+            <input type="text" id="search-input" placeholder="Search news..." oninput="filterNews()" />
+            <button id="search-button">Search</button>
         </nav>
     </header>
 
     <main>
-        <input type="text" id="search-input" placeholder="Search news..." oninput="filterNews()" />
-        <div class="news-container" id="cardscontainer">
-        </div>
+       
+        <div class="news-container" id="cardscontainer"></div>
 
         <template id="template-news-card">
             <div class="news-article">
@@ -42,6 +44,37 @@
             <img src="robo.png" alt="">
         </div>
     </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>About Us</h2>
+                <p>Modern News Website is dedicated to bringing you the latest news from various categories like technology, science, health, and sports. Stay informed with real-time updates and insightful articles.</p>
+            </div>
+            <div class="footer-section links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#" onclick="fetchNews('Technology')">Technology</a></li>
+                    <li><a href="#" onclick="fetchNews('Science')">Science</a></li>
+                    <li><a href="#" onclick="fetchNews('Health')">Health</a></li>
+                    <li><a href="#" onclick="fetchNews('Sports')">Sports</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <p>Email: support@modernnewswebsite.com</p>
+                <p>Phone: +1 234 567 890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Modern News Website. All Rights Reserved.</p>
+            <div class="socials">
+                <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

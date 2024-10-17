@@ -1,19 +1,34 @@
 const API_KEY = "98d0ce5182f14c88804690473cd5e3d2";
-const url = "https://newsapi.org/v2/top-headlines?";
+const headlinesUrl = "https://newsapi.org/v2/top-headlines?";
+const searchUrl = "https://newsapi.org/v2/everything?";
 
-window.addEventListener("load", () => fetchNews("Technology"));
+window.addEventListener("load", () => {
+    fetchNews("Technology");
+    document.getElementById("search-button").addEventListener("click", handleSearch);
+});
 
-async function fetchNews(query) {
-    const res = await fetch(`${url}category=${query.toLowerCase()}&apiKey=${API_KEY}`);
+
+async function fetchNews(query, isSearch = false) {
+    let res;
+    if (isSearch) {
+        res = await fetch(`${searchUrl}q=${encodeURIComponent(query)}&apiKey=${API_KEY}`);
+    } else {
+        res = await fetch(`${headlinesUrl}category=${query.toLowerCase()}&apiKey=${API_KEY}`);
+    }
+
     const data = await res.json();
-    bindData(data.articles);
+    if (data.articles) {
+        bindData(data.articles);
+    } else {
+        console.error("No articles found");
+    }
 }
 
 function bindData(articles) {
     const cardsContainer = document.getElementById("cardscontainer");
     const newsCardTemplate = document.getElementById("template-news-card");
 
-    cardsContainer.innerHTML = "";
+    cardsContainer.innerHTML = ""; 
 
     articles.forEach((article) => {
         if (!article.urlToImage) return;
@@ -32,7 +47,7 @@ function fillDataInCard(cardClone, article) {
 
     newsImg.src = article.urlToImage;
     newsTitle.innerHTML = `${article.title.slice(0, 60)}...`;
-    newsDesc.innerHTML = `${article.description.slice(0, 150)}...`;
+    newsDesc.innerHTML = `${article.description ? article.description.slice(0, 150) : ''}...`;
 
     const date = new Date(article.publishedAt).toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
     newsSource.innerHTML = `${article.source.name} · ${date}`;
@@ -42,19 +57,12 @@ function fillDataInCard(cardClone, article) {
     });
 }
 
-let curSelectedNav = null;
-function onNavItemClick(id) {
-    fetchNews(id);
-    const navItem = document.getElementById(id);
-    curSelectedNav?.classList.remove("active");
-    curSelectedNav = navItem;
-    curSelectedNav.classList.add("active");
-}
-
-document.getElementById("search-button").addEventListener("click", () => {
+function handleSearch() {
     const query = document.getElementById("search-input").value;
-    fetchNews(query);
-});
+    if (query) {
+        fetchNews(query, true); 
+    }
+}
 
 const categories = ["Technology", "Science", "Health", "Sports", "Business"];
 const nav = document.querySelector("nav ul");
@@ -62,6 +70,6 @@ const nav = document.querySelector("nav ul");
 categories.forEach(category => {
     const li = document.createElement("li");
     li.textContent = category;
-    li.onclick = () => onNavItemClick(category);
+    li.onclick = () => fetchNews(category);
     nav.appendChild(li);
 });
